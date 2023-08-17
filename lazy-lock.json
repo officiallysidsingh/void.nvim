@@ -8,6 +8,7 @@
   "mini.bufremove": { "branch": "main", "commit": "7821606e35c1ac931b56d8e3155f45ffe76ee7e5" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "7951701fd21291ac473ea92d3fd57ec5c8bf10bb" },
   "nui.nvim": { "branch": "main", "commit": "9e3916e784660f55f47daa6f26053ad044db5d6a" },
+  "nvim-navic": { "branch": "master", "commit": "9c89730da6a05acfeb6a197e212dfadf5aa60ca0" },
   "nvim-treesitter": { "branch": "master", "commit": "17d3398b5bd0d0042e1a71ee1842a831399cae97" },
   "nvim-web-devicons": { "branch": "master", "commit": "cfc8824cc1db316a276b36517f093baccb8e799a" },
   "plenary.nvim": { "branch": "master", "commit": "267282a9ce242bbb0c5dc31445b6d353bed978bb" },

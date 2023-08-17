@@ -31,62 +31,62 @@ lualine.setup({
           info = " ",
           hint = " ",
         },
-       },
-       {
-         "filetype",
-         icon_only = true,
-         separator = "",
-         padding = {
-           left = 1,
-           right = 0
-         }
-       },
-       {
-         "filename",
-         path = 1,
-         symbols = {
-           modified = "  ",
-           readonly = "",
-           unnamed = ""
-         }
-       },
-     },
-     lualine_x = {
-       -- stylua: ignore
-       {
-          "diff",
-          symbols = {
-            added = " ",
-            modified = " ",
-            removed = " ",
-          },
-        },
       },
-      lualine_y = {
-        {
-          "progress",
-          separator = " ",
-          padding = {
-            left = 1,
-            right = 0
-          }
-        },
-        {
-          "location",
-          padding = {
-            left = 0,
-            right = 1
-          }
-        },
+      {
+        "filetype",
+        icon_only = true,
+        separator = "",
+        padding = {
+          left = 1,
+          right = 0
+        }
       },
-      lualine_z = {
-        function()
-          return " " .. os.date("%I:%M %p")
-        end,
+      {
+        "filename",
+        path = 1,
+        symbols = {
+          modified = "  ",
+          readonly = "",
+          unnamed = ""
+        }
       },
     },
-    extensions = {
-      "neo-tree",
-      "lazy"
-    }
+    lualine_x = {
+      -- stylua: ignore
+      {
+        "diff",
+        symbols = {
+          added = " ",
+          modified = " ",
+          removed = " ",
+        },
+      },
+    },
+    lualine_y = {
+      {
+        "progress",
+        separator = " ",
+        padding = {
+          left = 1,
+          right = 0
+        }
+      },
+      {
+        "location",
+        padding = {
+          left = 0,
+          right = 1
+        }
+      },
+    },
+    lualine_z = {
+      function()
+        return " " .. os.date("%I:%M %p")
+      end,
+    },
+  },
+  extensions = {
+    "neo-tree",
+    "lazy"
+  }
 })
