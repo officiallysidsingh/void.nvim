@@ -10,7 +10,8 @@ wk.register(
         ["<leader>"] = {
           d = { name = "Delete" },
           x = { name = "Trouble Diagnostics" },
-          f = { name = "Telescope" },
+          f = { name = "Find (Telescope)" },
+          g = { name = "Git" },
         }
     }
 )

@@ -47,8 +47,43 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics" },
-      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "[D]ocument Diagnostics" },
+      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "[W]orkspace Diagnostics" },
     },
-  }
+  },
+
+  -- Telescope Find Files
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+    cmd = "Telescope",
+    keys = {
+      -- Grep
+      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Find Text In CWD" },
+      { "/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Find Text In Current Buffer"},
+
+      -- Files
+      { "<leader><space>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "[F]ind [G]it files"},
+
+      -- Git Commands
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "[G]it [B]ranches"},
+      { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "[G]it [S]tatus"},
+
+      -- Help
+      { "<Leader>h", "<cmd>Telescope help_tags<cr>", desc = "[H]elp" },
+    },
+  },
+  
+  -- Git Signs
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require ("config.gitsigns")
+    end,
+  },
 }
