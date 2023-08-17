@@ -28,5 +28,8 @@ map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
 map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
 
 -- Navigate buffers
-map("n", "<Tab>", ":bnext<CR>")
-map("n", "<S-Tab>", ":bprevious<CR>")
+map("n", "<Tab>", "<cmd>bnext<cr>")
+map("n", "<S-Tab>", "<cmd>bprevious<cr>")
+
+-- Lazy Dashboard
+map("n", "<leader>l", "<cmd>Lazy<cr>")

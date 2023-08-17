@@ -25,7 +25,7 @@ return {
     "echasnovski/mini.bufremove",
     -- stylua: ignore
     keys = {
-     { "<leader>db", function() require("mini.bufremove").delete(0, false) end, desc = "[D]elete [B]uffer" },
+     { "<leader>bdc", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [D]elete [C]urrent" },
     },
   },
 
@@ -74,7 +74,7 @@ return {
       { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "[G]it [S]tatus"},
 
       -- Help
-      { "<Leader>h", "<cmd>Telescope help_tags<cr>", desc = "[H]elp" },
+      { "<C-h>", "<cmd>Telescope help_tags<cr>", desc = "[H]elp" },
 
       -- Treesitter Functions
       { "<C-f>", "<cmd>Telescope treesitter<cr>", desc = "List All Functions" }

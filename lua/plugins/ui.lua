@@ -23,8 +23,8 @@ return {
 		version = "v3.x",
 		dependencies = "nvim-tree/nvim-web-devicons",
     keys = {
-      { "<leader>p", "<Cmd>BufferLineTogglePin<CR>", desc = "[P]in buffer" },
-      { "<leader>dp", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "[D]elete non-[P]inned buffers" },
+      { "<leader>bpt", "<Cmd>BufferLineTogglePin<CR>", desc = "[B]uffer [P]in [T]oggle" },
+      { "<leader>bdp", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "[B]uffer [D]elete non-[P]inned" },
     },
 		config = function()
       require ("config.bufferline")

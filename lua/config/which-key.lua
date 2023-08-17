@@ -8,10 +8,19 @@ wk.setup()
 wk.register(
     {
         ["<leader>"] = {
-          d = { name = "Delete" },
+          b = {
+            name = "Buffer",
+            d = {
+              name = "Delete",
+            },
+            p = {
+              name = "Pinned",
+            },
+          },
           x = { name = "Trouble Diagnostics" },
           f = { name = "Find (Telescope)" },
           g = { name = "Git" },
-        }
-    }
+          h = { name = "Harpoon" },
+        },
+   }
 )
