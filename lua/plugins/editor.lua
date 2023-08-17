@@ -75,6 +75,9 @@ return {
 
       -- Help
       { "<Leader>h", "<cmd>Telescope help_tags<cr>", desc = "[H]elp" },
+
+      -- Treesitter Functions
+      { "<C-f>", "<cmd>Telescope treesitter<cr>", desc = "List All Functions" }
     },
   },
   
