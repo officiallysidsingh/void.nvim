@@ -27,12 +27,6 @@ map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
 map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
 map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
 
--- Deleting buffers
-local buffers = require("helpers.buffers")
-map("n", "<leader>dc", buffers.delete_this, "[D]elete [C]urrent buffer")
-map("n", "<leader>do", buffers.delete_others, "[D]elete [O]ther buffers")
-map("n", "<leader>da", buffers.delete_all, "[D]elete [A]ll buffers")
-
 -- Navigate buffers
 map("n", "<Tab>", ":bnext<CR>")
 map("n", "<S-Tab>", ":bprevious<CR>")
