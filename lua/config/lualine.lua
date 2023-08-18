@@ -1,6 +1,6 @@
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
- error("BufferLine Error")
+ error("Lualine Error")
  return
 end
 
