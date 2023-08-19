@@ -52,6 +52,7 @@ return {
     event = "VeryLazy",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
+      "arkav/lualine-lsp-progress",
     },
     config = function()
       require ("config.lualine")

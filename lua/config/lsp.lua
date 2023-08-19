@@ -22,5 +22,6 @@ if not status_ok then
  return
 end
 
+-- LSP Configurations
 lspconfig.lua_ls.setup{}
-
+lspconfig.tsserver.setup{}
