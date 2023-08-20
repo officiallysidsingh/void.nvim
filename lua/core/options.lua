@@ -12,7 +12,7 @@ local opts = {
   backup = false,
   hlsearch = false,
   incsearch = true,
-  scrolloff = 8,
+  scrolloff = 15,
 }
 
 -- Set options from table
