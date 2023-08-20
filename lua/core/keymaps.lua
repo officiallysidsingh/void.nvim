@@ -1,4 +1,5 @@
 local map = require("helpers.keys").map
+local lsp_map = require("helpers.keys").lsp_map
 
 -- Disable Arrow Keys On All Modes
 map({ "n", "v" }, "<Up>", "<Nop>")
@@ -33,3 +34,9 @@ map("n", "<S-Tab>", "<cmd>bprevious<cr>")
 
 -- Lazy Dashboard
 map("n", "<leader>l", "<cmd>Lazy<cr>")
+
+-- LSP Keymaps
+lsp_map("gd", vim.lsp.buf.definition, 0, "[G]o To [D]efinition")
+lsp_map("gi", vim.lsp.buf.implementation, 0, "[G]o To [I]mplementation")
+lsp_map("gt", vim.lsp.buf.type_definition, 0, "[G]o To [T]ype Definition")
+lsp_map("K", vim.lsp.buf.hover, 0, "Hover Documantation")
