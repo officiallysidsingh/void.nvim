@@ -40,3 +40,23 @@ lsp_map("gd", vim.lsp.buf.definition, 0, "[G]o To [D]efinition")
 lsp_map("gi", vim.lsp.buf.implementation, 0, "[G]o To [I]mplementation")
 lsp_map("gt", vim.lsp.buf.type_definition, 0, "[G]o To [T]ype Definition")
 lsp_map("K", vim.lsp.buf.hover, 0, "Hover Documantation")
+
+-- Highlight On Yank
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = "*",
+})
+
+---- The Primeagen ----
+
+-- Move When Highlighted
+map("v", "<M-j>", ":m '>+1<CR>gv=gv")
+map("v", "<M-k>", ":m '<-2<CR>gv=gv")
+
+-- Copy for whole system
+map("n", "<leader>y", '"+y')
+map("v", "<leader>y", '"+y')
