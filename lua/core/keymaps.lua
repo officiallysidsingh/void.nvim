@@ -44,11 +44,11 @@ lsp_map("K", vim.lsp.buf.hover, 0, "Hover Documantation")
 -- Highlight On Yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = "*",
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
 })
 
 ---- The Primeagen ----
@@ -57,6 +57,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 map("v", "<M-j>", ":m '>+1<CR>gv=gv")
 map("v", "<M-k>", ":m '<-2<CR>gv=gv")
 
--- Copy for whole system
+-- Copy For Whole System
 map("n", "<leader>y", '"+y')
 map("v", "<leader>y", '"+y')
+
+-- Move Half Page Down And Up
+map("n", "<C-u>", "<C-u>zz", "Half Page [U]p")
+map("n", "<C-d>", "<C-d>zz", "Half Page [D]own")

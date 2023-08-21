@@ -12,11 +12,11 @@ return {
       {
         "<leader>e",
         "<cmd>Neotree toggle<cr>",
-        desc = "[E]xplorer"
-      }
+        desc = "[E]xplorer",
+      },
     },
     config = function()
-      require ("config.neo-tree")
+      require("config.neo-tree")
     end,
   },
 
@@ -25,7 +25,7 @@ return {
     "echasnovski/mini.bufremove",
     -- stylua: ignore
     keys = {
-     { "<leader>bdc", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [D]elete [C]urrent" },
+      { "<leader>bdc", function() require("mini.bufremove").delete(0, false) end, desc = "[B]uffer [D]elete [C]urrent" },
     },
   },
 
@@ -47,7 +47,7 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "[D]ocument Diagnostics" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "[D]ocument Diagnostics" },
       { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "[W]orkspace Diagnostics" },
     },
   },
@@ -57,7 +57,22 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require ("config.gitsigns")
+      require("config.gitsigns")
     end,
+  },
+
+  -- Nvim Surround
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
+  },
+
+  -- Nvim Comment
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
   },
 }
