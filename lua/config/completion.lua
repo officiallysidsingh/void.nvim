@@ -1,13 +1,13 @@
 local status_ok, cmp = pcall(require, "cmp")
 if not status_ok then
- error("Cmp Error")
- return
+  error("Cmp Error")
+  return
 end
 
 local status_ok, luasnip = pcall(require, "luasnip")
 if not status_ok then
- error("Luasnip Error")
- return
+  error("Luasnip Error")
+  return
 end
 
 local icons = {
@@ -52,11 +52,13 @@ cmp.setup({
   completion = {
     completeopt = "menu,menuone,noinsert",
   },
+
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
+
   mapping = cmp.mapping.preset.insert({
     -- To Close cmp
     ["<C-i>"] = cmp.mapping.abort(),
@@ -76,22 +78,22 @@ cmp.setup({
 
     -- To Select Next And Prev Items In Completion
     ["<C-j>"] = cmp.mapping.select_next_item(),
-    --["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
 
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true, }),
+    ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
   }),
 
   sources = cmp.config.sources({
-    { name = "nvim_lsp" },
+    { name = "nvim_lsp", max_item_count = 5 },
     { name = "luasnip" },
-    { name = "buffer", keyword_length = 4 },
+    { name = "buffer",   keyword_length = 6 },
     { name = "path" },
   }),
-  
+
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(_, item)
@@ -110,12 +112,12 @@ cmp.setup({
 
     -- Documentation Window Settings
     documentation = cmp.config.window.bordered({
-      border = "double"
+      border = "double",
     }),
   },
 
   experimental = {
     ghost_text = true,
     native_menu = false,
-  }
+  },
 })

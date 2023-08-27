@@ -6,6 +6,7 @@ local lsp = {
 
     -- For Web Development(FrontEnd)
     "tsserver",
+    "tailwindcss",
 
     -- For Lua
     "lua_ls",
@@ -49,6 +50,7 @@ lspconfig.gopls.setup({
 
 -- Web Development(FrontEnd)
 lspconfig.tsserver.setup({})
+lspconfig.tailwindcss.setup({})
 
 -- Lua
 lspconfig.lua_ls.setup({
