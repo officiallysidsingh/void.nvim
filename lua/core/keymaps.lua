@@ -19,8 +19,8 @@ map("n", "<C-s>", "<cmd>w<cr>", "[S]ave a file")
 map("n", "<leader>q", "<cmd>q<cr>", "[Q]uit")
 
 -- Easier access to beginning and end of lines
-map("n", "<M-h>", "^", "Go to beginning of line")
-map("n", "<M-l>", "$", "Go to end of line")
+map("n", "<S-H>", "^", "Go to beginning of line")
+map("n", "<S-L>", "$", "Go to end of line")
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")

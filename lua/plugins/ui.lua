@@ -1,11 +1,11 @@
 return {
   -- Tokyo Night ColorScheme
   {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require ("config.tokyonight")
+      require("config.catppuccin")
     end,
   },
 
@@ -13,8 +13,8 @@ return {
   {
     "goolord/alpha-nvim",
     lazy = false,
-    config = function ()
-      require ("config.alpha")
+    config = function()
+      require("config.alpha")
     end,
   },
 
@@ -22,17 +22,17 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-		version = "v3.x",
-		dependencies = "nvim-tree/nvim-web-devicons",
+    version = "v3.x",
+    dependencies = "nvim-tree/nvim-web-devicons",
     keys = {
-      { "<leader>bpt", "<Cmd>BufferLineTogglePin<CR>", desc = "[B]uffer [P]in [T]oggle" },
+      { "<leader>bpt", "<Cmd>BufferLineTogglePin<CR>",            desc = "[B]uffer [P]in [T]oggle" },
       { "<leader>bdp", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "[B]uffer [D]elete non-[P]inned" },
     },
-		config = function()
-      require ("config.bufferline")
+    config = function()
+      require("config.bufferline")
     end,
   },
-  
+
   -- Which Key
   {
     "folke/which-key.nvim",
@@ -42,8 +42,8 @@ return {
       vim.o.timeoutlen = 300
     end,
     config = function()
-      require ("config.which-key")
-		end,
+      require("config.which-key")
+    end,
   },
 
   -- Lua Line
@@ -55,7 +55,7 @@ return {
       "arkav/lualine-lsp-progress",
     },
     config = function()
-      require ("config.lualine")
+      require("config.lualine")
     end,
   },
 
