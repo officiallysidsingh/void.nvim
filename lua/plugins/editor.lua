@@ -41,17 +41,6 @@ return {
     },
   },
 
-  -- Trouble
-  {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    opts = { use_diagnostic_signs = true },
-    keys = {
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "[D]ocument Diagnostics" },
-      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "[W]orkspace Diagnostics" },
-    },
-  },
-
   -- Git Signs
   {
     "lewis6991/gitsigns.nvim",
