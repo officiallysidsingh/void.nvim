@@ -66,5 +66,6 @@ return {
     config = function()
       require("config.indent-blankline")
     end,
+    main = "ibl"
   },
 }
