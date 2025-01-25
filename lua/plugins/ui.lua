@@ -18,11 +18,20 @@ return {
     end,
   },
 
+  -- NVIM Web DevIcons
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = false,  -- Ensure it's loaded on startup
+    config = function()
+      require("nvim-web-devicons").setup()
+    end
+  },
+
   -- Buffer Line For Tabs
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    version = "v3.x",
+    version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
     keys = {
       { "<leader>bpt", "<Cmd>BufferLineTogglePin<CR>",            desc = "[B]uffer [P]in [T]oggle" },
