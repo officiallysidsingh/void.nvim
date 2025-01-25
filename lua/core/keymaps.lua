@@ -44,11 +44,11 @@ lsp_map("K", vim.lsp.buf.hover, 0, "Hover Documantation")
 -- Highlight On Yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = "*",
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
 })
 
 ---- TMUX Key Maps ----
@@ -60,8 +60,8 @@ map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", "Tmux Window Up")
 ---- The Primeagen ----
 
 -- Move When Highlighted
-map("v", "<M-j>", "<cmd>m '>+1<cr>gv=gv")
-map("v", "<M-k>", "<cmd>m '<-2<cr>gv=gv")
+map("v", "<C-j>", ":m '>+1<CR>gv=gv")
+map("v", "<C-k>", ":m '<-2<CR>gv=gv")
 
 -- Copy For Whole System
 map("n", "<leader>y", '"+y')
