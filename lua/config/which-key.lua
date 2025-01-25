@@ -1,26 +1,32 @@
 local status_ok, wk = pcall(require, "which-key")
 if not status_ok then
- error("Which-Key Error")
- return
+	error("Which-Key Error")
+	return
 end
 
-wk.setup()
-wk.register(
-    {
-        ["<leader>"] = {
-          b = {
-            name = "Buffer",
-            d = {
-              name = "Delete",
-            },
-            p = {
-              name = "Pinned",
-            },
-          },
-          x = { name = "Trouble Diagnostics" },
-          f = { name = "Find (Telescope)" },
-          g = { name = "Git" },
-          h = { name = "Harpoon" },
-        },
-   }
-)
+-- Setup `which-key` with configurations
+wk.setup({
+	plugins = {
+		marks = true,
+		registers = true,
+		spelling = { enabled = true, suggestions = 20 },
+	},
+	icons = {
+		breadcrumb = "»",
+		separator = "",
+		group = " ",
+	},
+	replace = {
+		["<leader>"] = "SPC",
+	},
+})
+
+-- Add key mappings with groups
+wk.add({
+	{ "<leader>b", group = "Buffer" },
+	{ "<leader>bd", group = "Delete" },
+	{ "<leader>bp", group = "Pinned" },
+	{ "<leader>f", group = "Find (Telescope)" },
+	{ "<leader>g", group = "Git" },
+	{ "<leader>x", group = "Trouble Diagnostics" },
+})
