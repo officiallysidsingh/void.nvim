@@ -1,7 +1,7 @@
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
- error("BufferLine Error")
- return
+  vim.notify("BufferLine Error", vim.log.levels.ERROR)
+  return
 end
 
 bufferline.setup({
@@ -9,14 +9,21 @@ bufferline.setup({
     separator_style = "slant",
     always_show_bufferline = false,
     indicator = {
-      style = 'underline',
+      style = "underline",
     },
     diagnostics = "nvim_lsp",
-    
+
     diagnostics_indicator = function(_, _, diag)
-      local ret = (diag.error and " " .. diag.error .. " " or "")
-      .. (diag.warning and " " .. diag.warning or "")
-      return vim.trim(ret)
+      local result = {}
+
+      if diag.error then
+        table.insert(result, { text = " " .. diag.error, fg = "#FF0000" }) -- Red for errors
+      end
+      if diag.warning then
+        table.insert(result, { text = " " .. diag.warning, fg = "#FFA500" }) -- Orange for warnings
+      end
+
+      return result
     end,
 
     offsets = {
@@ -29,8 +36,8 @@ bufferline.setup({
       },
     },
     show_buffer_icons = false,
-    modified_icon = '●',
+    modified_icon = "●",
     show_close_icon = false,
     show_buffer_close_icons = false,
-    }
+  }
 })
