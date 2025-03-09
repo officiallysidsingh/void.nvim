@@ -21,10 +21,10 @@ return {
   -- NVIM Web DevIcons
   {
     "nvim-tree/nvim-web-devicons",
-    lazy = false,  -- Ensure it's loaded on startup
+    lazy = false, -- Ensure it's loaded on startup
     config = function()
       require("nvim-web-devicons").setup()
-    end
+    end,
   },
 
   -- Buffer Line For Tabs
@@ -34,8 +34,8 @@ return {
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
     keys = {
-      { "<leader>bpt", "<Cmd>BufferLineTogglePin<CR>",            desc = "[B]uffer [P]in [T]oggle" },
-      { "<leader>bdp", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "[B]uffer [D]elete non-[P]inned" },
+      { "<leader>bp",  "<Cmd>BufferLineTogglePin<CR>",            desc = "[B]uffer [P]in Toggle" },
+      { "<leader>bdp", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "[B]uffer [D]elete non-pinned" },
     },
     config = function()
       require("config.bufferline")
@@ -75,6 +75,6 @@ return {
     config = function()
       require("config.indent-blankline")
     end,
-    main = "ibl"
+    main = "ibl",
   },
 }

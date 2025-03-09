@@ -14,17 +14,15 @@ return {
 
 			-- Files
 			{ "<leader><space>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-			{ "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "[F]ind [G]it files" },
+
+			-- Buffers
+			{ "<leader>bs", "<cmd>Telescope buffers<cr>", desc = "[B]uffers [S]how" },
 
 			-- Git Commands
 			{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "[G]it [B]ranches" },
-			{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "[G]it [S]tatus" },
 
-			-- Treesitter Functions
-			{ "<C-f>", "<cmd>Telescope treesitter<cr>", desc = "List All Functions" },
-
-			-- LSP References
-			{ "gr", "<cmd>Telescope lsp_references<cr>", desc = "[G]o To [R]eferences" },
+			-- LSP Definitions
+			{ "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "[G]o To [D]efinition" },
 		},
 	},
 }
