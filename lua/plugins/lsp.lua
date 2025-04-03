@@ -27,7 +27,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("config.lsp")
+      require("config.mason-lspconfig")
     end,
   },
 }

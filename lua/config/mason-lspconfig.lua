@@ -15,14 +15,14 @@ end
 -- Pass In Any New LSP To Add
 local lsp = {
   ensure_installed = {
-    -- For Golang
+    -- Golang
     "gopls",
 
-    -- For Web Development(FrontEnd)
+    -- Web Development(FrontEnd)
     "ts_ls",
     "tailwindcss",
 
-    -- For Lua
+    -- Lua
     "lua_ls",
   },
 }
