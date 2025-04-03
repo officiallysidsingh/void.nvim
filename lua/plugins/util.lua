@@ -10,7 +10,7 @@ return {
         "winsize",
         "help",
         "globals",
-        "skiprtp"
+        "skiprtp",
       },
     },
   },
@@ -18,10 +18,10 @@ return {
     "mbbill/undotree",
     keys = {
       { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "[U]ndo Tree" },
-    }
+    },
   },
   {
     "tpope/vim-fugitive",
-    cmd = {"Git", "G"}
-  }
+    cmd = { "Git", "G" },
+  },
 }

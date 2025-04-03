@@ -32,24 +32,36 @@ map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
 map("n", "<Tab>", "<cmd>bnext<cr>")
 map("n", "<S-Tab>", "<cmd>bprevious<cr>")
 
+-- Select the whole file in a buffer
+map("n", "<C-a>", "ggVG", "Select Whole File in a Buffer")
+
+-- Show Git changes for current hunk
+map("n", "G", ":Gitsigns preview_hunk<CR>", "Show Git Changes")
+
 -- Lazy Dashboard
 map("n", "<leader>l", "<cmd>Lazy<cr>")
 
 -- LSP Keymaps
-lsp_map("gd", vim.lsp.buf.definition, 0, "[G]o To [D]efinition")
-lsp_map("gi", vim.lsp.buf.implementation, 0, "[G]o To [I]mplementation")
-lsp_map("gt", vim.lsp.buf.type_definition, 0, "[G]o To [T]ype Definition")
 lsp_map("K", vim.lsp.buf.hover, 0, "Hover Documantation")
 
 -- Highlight On Yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = "*",
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = "*",
 })
+
+-- Close hover window on ESC
+vim.keymap.set("n", "<Esc>", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_config(win).relative ~= "" then
+      vim.api.nvim_win_close(win, true)
+    end
+  end
+end, { silent = true, desc = "Close hover on ESC" })
 
 ---- TMUX Key Maps ----
 map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", "Tmux Window Left")

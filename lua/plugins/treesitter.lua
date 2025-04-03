@@ -6,7 +6,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSUpdateSync" },
     config = function()
-      require ("config.treesitter")
-    end
-  }
+      require("config.treesitter")
+    end,
+  },
 }

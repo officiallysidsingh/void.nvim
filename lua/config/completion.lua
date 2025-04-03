@@ -4,8 +4,8 @@ if not status_ok then
   return
 end
 
-local status_ok, luasnip = pcall(require, "luasnip")
-if not status_ok then
+local status_ok_luasnip, luasnip = pcall(require, "luasnip")
+if not status_ok_luasnip then
   error("Luasnip Error")
   return
 end
@@ -90,7 +90,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp", max_item_count = 5 },
     { name = "luasnip" },
-    { name = "buffer",   keyword_length = 6 },
+    { name = "buffer", keyword_length = 6 },
     { name = "path" },
   }),
 

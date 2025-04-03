@@ -13,17 +13,9 @@ bufferline.setup({
     },
     diagnostics = "nvim_lsp",
 
-    diagnostics_indicator = function(_, _, diag)
-      local result = {}
-
-      if diag.error then
-        table.insert(result, { text = " " .. diag.error, fg = "#FF0000" }) -- Red for errors
-      end
-      if diag.warning then
-        table.insert(result, { text = " " .. diag.warning, fg = "#FFA500" }) -- Orange for warnings
-      end
-
-      return result
+    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+      local icon = level:match("error") and " " or " "
+      return " " .. icon .. count
     end,
 
     offsets = {

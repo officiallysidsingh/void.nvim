@@ -28,10 +28,10 @@ return {
 
   -- Completion UI Plugins
   {
-    "hrsh7th/cmp-nvim-lsp"
+    "hrsh7th/cmp-nvim-lsp",
   },
   {
-    "hrsh7th/cmp-buffer"
+    "hrsh7th/cmp-buffer",
   },
   {
     "hrsh7th/cmp-path",
@@ -52,7 +52,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      require ("config.completion")
+      require("config.completion")
     end,
   },
 }

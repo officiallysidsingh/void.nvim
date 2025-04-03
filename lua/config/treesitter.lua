@@ -10,6 +10,7 @@ nvim_treesitter_autotag.setup({
     "lua",
     "vim",
     "vimdoc",
+
     -- Custom
     "html",
     "javascript",

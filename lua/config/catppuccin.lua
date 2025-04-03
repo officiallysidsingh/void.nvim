@@ -11,5 +11,5 @@ catppuccin.setup({
       AlphaButtons = { fg = colors.teal },
       AlphaFooter = { fg = colors.lavender },
     }
-  end
+  end,
 })
