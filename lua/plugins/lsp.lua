@@ -1,33 +1,25 @@
 return {
   {
     "williamboman/mason.nvim",
-    cmd = "Mason",
-    keys = { { "<leader>m", "<cmd>Mason<cr>", desc = "[M]ason" } },
-    build = ":MasonUpdate",
-    opts = {
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
-      },
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
     },
+    lazy = false,
+    build = ":MasonUpdate",
+    config = function()
+      require("config.mason")
+    end,
   },
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
     },
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("config.mason-lspconfig")
+      require("config.nvim-lspconfig")
     end,
   },
 }
