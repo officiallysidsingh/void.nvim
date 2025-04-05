@@ -17,7 +17,7 @@ map("i", "jk", "<esc>", "To go back to Normal Mode")
 -- Quick Access To Some Common Actions
 map("n", "<C-s>", "<cmd>w<cr>", "[S]ave a file")
 map("n", "<leader>q", "<cmd>q<cr>", "[Q]uit")
-map("n", "<leader>tc", ":s/\\<./\\u&/g<CR>", "[T]itle [C]ase")
+map("n", "<leader>t", ":s/\\<./\\u&/g<CR>", "[T]itle-case")
 
 -- Easier Access To Beginning And End Of Lines
 map("n", "<S-H>", "^", "Go to beginning of line")

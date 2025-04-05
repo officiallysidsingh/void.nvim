@@ -48,8 +48,11 @@ wk.add({
   -- Mason
   { "<leader>m", group = "[M]ason" },
 
-  -- Undotree
-  { "<leader>u", group = "[U]ndotree" },
+  -- Undo-tree
+  { "<leader>u", group = "[U]ndo-tree" },
+
+  -- Title-case
+  { "<leader>t", group = "[T]itle-case" },
 
   -- Quit
   { "<leader>q", group = "[Q]uit" },
