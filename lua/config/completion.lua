@@ -45,7 +45,7 @@ end)
 cmp.setup({
   -- Opts For Insert Mode Autocompletion
   completion = {
-    completeopt = "fuzzy,menu,menuone,noselect,preview",
+    completeopt = "fuzzy,menu,menuone,noinsert,preview",
   },
 
   -- Config For Nvim-Cmp Interaction With Snippet Engines
@@ -60,9 +60,6 @@ cmp.setup({
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
 
-    -- To Show Completion Suggestions
-    ["<C-Space>"] = cmp.mapping.complete(),
-
     -- To Close Completion Window
     ["<C-e>"] = cmp.mapping.abort(),
 
@@ -70,11 +67,11 @@ cmp.setup({
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
 
     -- To Scroll Docs
-    ["<C-u>"] = cmp.mapping(function()
+    ["<C-d>"] = cmp.mapping(function()
       cmp.scroll_docs(4)
     end, { "i" }),
 
-    ["<C-d>"] = cmp.mapping(function()
+    ["<C-u>"] = cmp.mapping(function()
       cmp.scroll_docs(-4)
     end, { "i" }),
 
@@ -90,7 +87,7 @@ cmp.setup({
 
   -- Sources For Autocompletion
   sources = cmp.config.sources({
-    { name = "nvim_lsp" }, -- For LSP
+    { name = "nvim_lsp", max_item_count = 5 }, -- For LSP
     { name = "luasnip" }, -- For Snippets
     { name = "buffer" }, -- For Current Buffer Text
     { name = "path" }, -- For File System Path

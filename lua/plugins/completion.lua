@@ -11,7 +11,7 @@ return {
       "L3MON4D3/LuaSnip", -- snippet engine
       "saadparwaiz1/cmp_luasnip", -- for autocompletion
       "rafamadriz/friendly-snippets", -- source for useful snippets
-      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp", -- source for lsp
     },
     config = function()
       require("config.completion")
