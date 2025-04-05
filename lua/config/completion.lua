@@ -1,3 +1,5 @@
+local map = require("helpers.keys").map
+
 local status_ok, cmp = pcall(require, "cmp")
 if not status_ok then
   error("Cmp Error")
@@ -10,49 +12,43 @@ if not status_ok_luasnip then
   return
 end
 
-local icons = {
-  Array = " ",
-  Boolean = " ",
-  Class = " ",
-  Color = " ",
-  Constant = " ",
-  Constructor = " ",
-  Copilot = " ",
-  Enum = " ",
-  EnumMember = " ",
-  Event = " ",
-  Field = " ",
-  File = " ",
-  Folder = " ",
-  Function = " ",
-  Interface = " ",
-  Key = " ",
-  Keyword = " ",
-  Method = " ",
-  Module = " ",
-  Namespace = " ",
-  Null = " ",
-  Number = " ",
-  Object = " ",
-  Operator = " ",
-  Package = " ",
-  Property = " ",
-  Reference = " ",
-  Snippet = " ",
-  String = " ",
-  Struct = " ",
-  Text = " ",
-  TypeParameter = " ",
-  Unit = " ",
-  Value = " ",
-  Variable = " ",
-}
+local status_ok_luasnip_loaders, luasnip_loaders = pcall(require, "luasnip.loaders.from_vscode")
+if not status_ok_luasnip_loaders then
+  error("Luasnip Loaders Error")
+  return
+end
+
+--- Luasnip Config ---
+
+-- Load VSCode Style Snippets
+luasnip_loaders.lazy_load()
+
+map("i", "jk", "<esc>", "To go back to Normal Mode")
+
+-- In Insert Mode, Jump To Next Snippet Or Insert A Tab
+map("i", "<Tab>", function()
+  return luasnip.jumpable(1) and "<Plug>luasnip-jump-next" or "<Tab>"
+end)
+
+-- In Select Mode, Jump To Next Snippet
+map("s", "<Tab>", function()
+  luasnip.jump(1)
+end)
+
+-- In Insert And Select Modes, Jump To Previous Snippet
+map({ "i", "s" }, "<S-Tab>", function()
+  luasnip.jump(-1)
+end)
+
+--- CMP Config ---
 
 cmp.setup({
+  -- Opts For Insert Mode Autocompletion
   completion = {
-    completeopt = "menu,menuone,noinsert",
+    completeopt = "fuzzy,menu,menuone,noselect,preview",
   },
 
+  -- Config For Nvim-Cmp Interaction With Snippet Engines
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -60,8 +56,27 @@ cmp.setup({
   },
 
   mapping = cmp.mapping.preset.insert({
-    -- To Close cmp
-    ["<C-i>"] = cmp.mapping.abort(),
+    -- To Select Next And Prev Items In Completion
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
+
+    -- To Show Completion Suggestions
+    ["<C-Space>"] = cmp.mapping.complete(),
+
+    -- To Close Completion Window
+    ["<C-e>"] = cmp.mapping.abort(),
+
+    -- To Accept Currently Selected Item.
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+
+    -- To Scroll Docs
+    ["<C-u>"] = cmp.mapping(function()
+      cmp.scroll_docs(4)
+    end, { "i" }),
+
+    ["<C-d>"] = cmp.mapping(function()
+      cmp.scroll_docs(-4)
+    end, { "i" }),
 
     -- To Open and Close Docs
     ["<C-x>"] = cmp.mapping(function()
@@ -71,39 +86,15 @@ cmp.setup({
         cmp.open_docs()
       end
     end, { "i" }),
-
-    -- To Scroll Docs
-    ["<C-n>"] = cmp.mapping.scroll_docs(4),
-    ["<C-p>"] = cmp.mapping.scroll_docs(-4),
-
-    -- To Select Next And Prev Items In Completion
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-
-    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
   }),
 
+  -- Sources For Autocompletion
   sources = cmp.config.sources({
-    { name = "nvim_lsp", max_item_count = 5 },
-    { name = "luasnip" },
-    { name = "buffer", keyword_length = 6 },
-    { name = "path" },
+    { name = "nvim_lsp" }, -- For LSP
+    { name = "luasnip" }, -- For Snippets
+    { name = "buffer" }, -- For Current Buffer Text
+    { name = "path" }, -- For File System Path
   }),
-
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(_, item)
-      if icons[item.kind] then
-        item.menu = item.kind
-        item.kind = icons[item.kind]
-      end
-      return item
-    end,
-  },
 
   -- Window Settings
   window = {
