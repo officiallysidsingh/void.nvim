@@ -41,6 +41,18 @@ wk.add({
   { "<leader>/", group = "Find Text In CWD" },
   { "<leader><space>", group = "Find Files" },
 
+  -- Restart LSP
+  { "<leader>r", group = "[R]estart" },
+  { "<leader>rl", group = "[L]SP" },
+
+  -- Code
+  { "<leader>c", group = "[C]ode" },
+  { "<leader>ca", group = "[A]ctions" },
+
+  -- Todo Comments Telescope
+  { "<leader>f", group = "[F]ind" },
+  { "<leader>ft", group = "[T]odo" },
+
   -- Git
   { "<leader>g", group = "[G]it" },
   { "<leader>gb", group = "[B]ranches" },

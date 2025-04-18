@@ -58,16 +58,18 @@ map("n", "<C-d>", "<C-d>zz", "Half Page [D]own")
 map("n", "<leader>m", "<cmd>Mason<cr>", "[M]ason")
 
 -- LSP Keymaps
-lsp_map("n", "K", vim.lsp.buf.hover, "Hover Documantation")
+lsp_map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 lsp_map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Actions")
-lsp_map({ "n", "v" }, "<leader>rn", vim.lsp.buf.rename, "Smart Rename")
-lsp_map("n", "<leader>rs", "<cmd>LspRestart<CR>", "Restart LSP")
+lsp_map("n", "<leader>rl", "<cmd>LspRestart<CR>", "Restart LSP")
+
+-- Diagnostics
+map("n", "D", vim.diagnostic.open_float, "Line Diagnostics")
 
 -- Highlight On Yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
   group = highlight_group,
   pattern = "*",
