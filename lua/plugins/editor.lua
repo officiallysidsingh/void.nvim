@@ -61,10 +61,9 @@ return {
   -- Todo Comments
   {
     "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     event = { "BufReadPost", "BufNewFile" },
     config = true,
-    -- stylua: ignore
     keys = {
       { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "[F]ind [T]odo" },
     },
@@ -82,9 +81,9 @@ return {
   -- Nvim Surround
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*",
     event = { "BufReadPre", "BufNewFile" },
-    opts = {},
+    config = true,
   },
 
   -- Nvim Comment
