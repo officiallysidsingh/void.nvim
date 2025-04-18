@@ -6,6 +6,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    event = { "BufReadPost", "BufNewFile" },
     cmd = "Telescope",
     keys = {
       -- Grep
