@@ -20,8 +20,4 @@ return {
       { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "[U]ndo Tree" },
     },
   },
-  {
-    "tpope/vim-fugitive",
-    cmd = { "Git", "G" },
-  },
 }
