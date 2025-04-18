@@ -8,7 +8,7 @@ end
 -- Adding Formatting Sources
 local formatters = {
   -- Golang
-  go = { { "goimports", "golines", "gofumpt" } },
+  go = { "goimports", "golines", "gofumpt" },
 
   -- Python
   python = { "isort", "black" },
