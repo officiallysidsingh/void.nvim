@@ -28,7 +28,6 @@ vim.diagnostic.config({
 -- Golang
 lspconfig["gopls"].setup({
   capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     gopls = {
       usePlaceholders = true,
@@ -42,34 +41,25 @@ lspconfig["gopls"].setup({
 -- Python
 lspconfig["pyright"].setup({
   capabilities = capabilities,
-  on_attach = on_attach,
+  filetypes = { "python" },
 })
 
 -- Web Development(FrontEnd)
 lspconfig["ts_ls"].setup({
   capabilities = capabilities,
-  on_attach = on_attach,
 })
 
 lspconfig["html"].setup({
   capabilities = capabilities,
-  on_attach = on_attach,
-})
-
-lspconfig["cssls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
 })
 
 lspconfig["tailwindcss"].setup({
   capabilities = capabilities,
-  on_attach = on_attach,
 })
 
 -- Lua
 lspconfig["lua_ls"].setup({
   capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     Lua = {
       -- Make LSP recognize "vim" Global

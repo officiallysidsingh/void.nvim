@@ -24,7 +24,6 @@ local lsp = {
     -- Web Development(FrontEnd)
     "ts_ls",
     "html",
-    "cssls",
     "tailwindcss",
 
     -- Lua
