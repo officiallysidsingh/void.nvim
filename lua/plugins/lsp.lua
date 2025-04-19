@@ -4,7 +4,7 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
     },
-    lazy = false,
+    lazy = "VeryLazy",
     build = ":MasonUpdate",
     config = function()
       require("config.mason")
