@@ -23,8 +23,6 @@ end
 -- Load VSCode Style Snippets
 luasnip_loaders.lazy_load()
 
-map("i", "jk", "<esc>", "To go back to Normal Mode")
-
 -- In Insert Mode, Jump To Next Snippet Or Insert A Tab
 map("i", "<Tab>", function()
   return luasnip.jumpable(1) and "<Plug>luasnip-jump-next" or "<Tab>"

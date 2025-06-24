@@ -7,6 +7,9 @@ end
 
 -- Adding Formatting Sources
 local formatters = {
+  -- Protobuf
+  proto = { "buf_ls" },
+
   -- Golang
   go = { "goimports", "golines", "gofumpt" },
 

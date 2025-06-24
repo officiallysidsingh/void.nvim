@@ -25,6 +25,12 @@ vim.diagnostic.config({
   },
 })
 
+-- Protobuf
+lspconfig["buf_ls"].setup({
+  capabilities = capabilities,
+  filetypes = { "proto" },
+})
+
 -- Golang
 lspconfig["gopls"].setup({
   capabilities = capabilities,

@@ -12,7 +12,7 @@ map("n", "j", "gj")
 map("n", "k", "gk")
 
 -- Blazingly Fast Way Out Of Insert Mode
-map("i", "jk", "<esc>", "To go back to Normal Mode")
+map("i", "jj", "<esc>", "To go back to Normal Mode")
 
 -- Quick Access To Some Common Actions
 map("n", "<C-s>", "<cmd>w<cr>", "[S]ave a file")

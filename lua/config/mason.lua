@@ -15,6 +15,9 @@ end
 -- Pass In Any New LSP To Add
 local lsp = {
   ensure_installed = {
+    -- Protobuf
+    "buf_ls",
+
     -- Golang
     "gopls",
 
