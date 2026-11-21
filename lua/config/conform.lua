@@ -1,42 +1,37 @@
--- Conform.nvim
-local status_ok, conform = pcall(require, "conform")
-if not status_ok then
-  error("Conform Error")
-  return
-end
+-- Conform.nvim: filetype-based formatter runner.
+--
+-- The per-filetype table lives in config/languages.lua so every language's
+-- LSP / formatter / parser / debugger are declared next to each other.
+-- Per-tool arguments (dialect, indent, …) live here, since they're conform-
+-- specific rather than "part of the language definition".
 
--- Adding Formatting Sources
-local formatters = {
-  -- Protobuf
-  proto = { "buf_ls" },
+local languages = require("config.languages")
 
-  -- Golang
-  go = { "goimports", "golines", "gofumpt" },
+require("conform").setup({
+  formatters_by_ft = languages.formatters_by_ft,
 
-  -- Python
-  python = { "isort", "black" },
-
-  -- Web Development(FrontEnd)
-  javascript = { "prettierd" },
-  typescript = { "prettierd" },
-  javascriptreact = { "prettierd" },
-  typescriptreact = { "prettierd" },
-  css = { "prettierd" },
-  html = { "prettierd" },
-  json = { "prettierd" },
-  yaml = { "prettierd" },
-  markdown = { "prettierd" },
-  grapql = { "prettierd" },
-
-  -- Lua
-  lua = { "stylua" },
-}
-
-conform.setup({
-  formatters_by_ft = formatters,
+  -- Run on save for every buffer that has a formatter configured; otherwise
+  -- fall back to the LSP's own formatProvider so even unconfigured languages
+  -- (e.g. lua_ls) still format.
   format_on_save = {
-    lsp_fallback = true,
-    async = false,
+    lsp_format = "fallback",
     timeout_ms = 3000,
+  },
+
+  formatters = {
+    -- sqlfluff requires an explicit SQL dialect; `ansi` is the safest
+    -- lowest-common-denominator. Override per project by dropping a
+    -- `.sqlfluff` file at the repo root (conform will pick it up, and
+    -- sqlfluff itself respects the dialect specified there).
+    sqlfluff = {
+      prepend_args = { "--dialect", "ansi" },
+    },
+
+    -- shfmt: 2-space indent to match .editorconfig,
+    --   -ci: indent switch cases,
+    --   -s : simplify where possible (e.g. drop redundant subshells).
+    shfmt = {
+      prepend_args = { "-i", "2", "-ci", "-s" },
+    },
   },
 })
