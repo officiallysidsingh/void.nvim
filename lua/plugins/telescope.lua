@@ -1,8 +1,9 @@
+-- Telescope: fuzzy finder for files, buffers, grep and LSP symbols.
 return {
   -- Telescope Find Files
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    version = "*", -- latest release tag
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
