@@ -1,10 +1,11 @@
+-- Treesitter: parser installation; highlighting is started per buffer in config.treesitter.
 return {
   {
+    -- The `main` branch is a rewrite for Neovim 0.12+ and does not support lazy-loading
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSUpdateSync" },
     config = function()
       require("config.treesitter")
     end,
