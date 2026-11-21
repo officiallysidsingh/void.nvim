@@ -1,3 +1,4 @@
+-- Completion plugins (nvim-cmp + sources). Configured in config.completion.
 return {
   -- Completion UI Plugins
 

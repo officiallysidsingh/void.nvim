@@ -1,3 +1,4 @@
+-- Indent-blankline: shows indent guides, with rainbow-colored scope markers.
 local status_ok, ibl = pcall(require, "ibl")
 if not status_ok then
   error("Indent Blankline Error")

@@ -1,3 +1,4 @@
+-- Bufferline: buffers as tabs, with LSP diagnostic markers and a neo-tree offset.
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
   vim.notify("BufferLine Error", vim.log.levels.ERROR)

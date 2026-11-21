@@ -1,3 +1,4 @@
+-- Neo-tree: file / buffer / git-status explorer in a side panel.
 local status_ok, neotree = pcall(require, "neo-tree")
 if not status_ok then
   error("Neo Tree Error")

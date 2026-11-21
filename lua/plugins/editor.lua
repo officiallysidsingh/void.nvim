@@ -1,3 +1,4 @@
+-- Editor essentials: file explorer, git signs, surround, comments, TODOs.
 return {
   -- Neo Tree
   {

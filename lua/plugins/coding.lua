@@ -1,3 +1,4 @@
+-- Coding helpers: auto-pairing brackets and auto-closing HTML / JSX tags.
 return {
   {
     "windwp/nvim-autopairs",

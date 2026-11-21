@@ -1,3 +1,4 @@
+-- Utilities: session persistence and undo tree.
 return {
   {
     "folke/persistence.nvim",
