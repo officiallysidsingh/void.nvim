@@ -1,52 +1,46 @@
+-- nvim-cmp completion engine + LuaSnip snippets.
+--
+-- Sources (in priority order): LSP, LuaSnip, current buffer, filesystem paths.
+-- Keymaps favor Ctrl-based navigation so `Tab` is left to snippets and so
+-- completion doesn't fight with vim motion muscle memory.
+
 local map = require("helpers.keys").map
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+local luasnip_loaders = require("luasnip.loaders.from_vscode")
 
-local status_ok, cmp = pcall(require, "cmp")
-if not status_ok then
-  error("Cmp Error")
-  return
-end
+-- ---------------------------------------------------------------------------
+-- LuaSnip
+-- ---------------------------------------------------------------------------
 
-local status_ok_luasnip, luasnip = pcall(require, "luasnip")
-if not status_ok_luasnip then
-  error("Luasnip Error")
-  return
-end
-
-local status_ok_luasnip_loaders, luasnip_loaders = pcall(require, "luasnip.loaders.from_vscode")
-if not status_ok_luasnip_loaders then
-  error("Luasnip Loaders Error")
-  return
-end
-
---- Luasnip Config ---
-
--- Load VSCode Style Snippets
+-- Load snippets bundled with friendly-snippets (VSCode format) on demand.
 luasnip_loaders.lazy_load()
 
--- In Insert Mode, Jump To Next Snippet Or Insert A Tab
+-- Tab = jump to the next snippet placeholder when inside one, otherwise the
+-- real Tab key. Shift-Tab goes to the previous placeholder in insert/select.
 map("i", "<Tab>", function()
   return luasnip.jumpable(1) and "<Plug>luasnip-jump-next" or "<Tab>"
 end)
-
--- In Select Mode, Jump To Next Snippet
 map("s", "<Tab>", function()
   luasnip.jump(1)
 end)
-
--- In Insert And Select Modes, Jump To Previous Snippet
 map({ "i", "s" }, "<S-Tab>", function()
   luasnip.jump(-1)
 end)
 
---- CMP Config ---
+-- ---------------------------------------------------------------------------
+-- nvim-cmp
+-- ---------------------------------------------------------------------------
 
 cmp.setup({
-  -- Opts For Insert Mode Autocompletion
   completion = {
+    -- `fuzzy` for substring matching, `noinsert` so arrow keys don't overwrite
+    -- the buffer text as you preview completions, `preview` for the inline
+    -- ghost text.
     completeopt = "fuzzy,menu,menuone,noinsert,preview",
   },
 
-  -- Config For Nvim-Cmp Interaction With Snippet Engines
+  -- Tell nvim-cmp how to expand a snippet when a completion item carries one.
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -54,26 +48,26 @@ cmp.setup({
   },
 
   mapping = cmp.mapping.preset.insert({
-    -- To Select Next And Prev Items In Completion
+    -- Navigate the completion menu with Ctrl-j/k so it mirrors our other
+    -- "move within a thing" keybinds (telescope, dap-ui, etc.).
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
 
-    -- To Close Completion Window
     ["<C-e>"] = cmp.mapping.abort(),
 
-    -- To Accept Currently Selected Item.
+    -- `select = false` means Enter only accepts an item if you've explicitly
+    -- highlighted one, so pressing Enter after a word still inserts a newline.
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
 
-    -- To Scroll Docs
+    -- Scroll the documentation popup.
     ["<C-d>"] = cmp.mapping(function()
       cmp.scroll_docs(4)
     end, { "i" }),
-
     ["<C-u>"] = cmp.mapping(function()
       cmp.scroll_docs(-4)
     end, { "i" }),
 
-    -- To Open and Close Docs
+    -- Toggle the documentation popup when it's not already open.
     ["<C-x>"] = cmp.mapping(function()
       if cmp.visible_docs() then
         cmp.close_docs()
@@ -83,26 +77,22 @@ cmp.setup({
     end, { "i" }),
   }),
 
-  -- Sources For Autocompletion
+  -- Sources, in match priority order. LSP is capped at 5 items because some
+  -- servers (ts_ls, pyright) return hundreds of matches and bury the good ones.
   sources = cmp.config.sources({
-    { name = "nvim_lsp", max_item_count = 5 }, -- For LSP
-    { name = "luasnip" }, -- For Snippets
-    { name = "buffer" }, -- For Current Buffer Text
-    { name = "path" }, -- For File System Path
+    { name = "nvim_lsp", max_item_count = 5 },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
   }),
 
-  -- Window Settings
   window = {
-    -- Completion Window Settings
     completion = cmp.config.window.bordered(),
-
-    -- Documentation Window Settings
-    documentation = cmp.config.window.bordered({
-      border = "double",
-    }),
+    documentation = cmp.config.window.bordered({ border = "double" }),
   },
 
   experimental = {
+    -- Grey preview of the top completion after the cursor as you type.
     ghost_text = true,
     native_menu = false,
   },
