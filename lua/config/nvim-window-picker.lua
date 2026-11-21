@@ -1,6 +1,7 @@
+-- Window-picker: lets neo-tree ask which window to open a file in.
 local status_ok, window_picker = pcall(require, "window-picker")
 if not status_ok then
-  error("Lualine Error")
+  error("Window Picker Error")
   return
 end
 
