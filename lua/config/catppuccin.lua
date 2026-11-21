@@ -1,10 +1,6 @@
-local status_ok, catppuccin = pcall(require, "catppuccin")
-if not status_ok then
-  error("Catppuccin Error")
-  return
-end
-
-catppuccin.setup({
+-- Catppuccin colorscheme (macchiato flavour) and alpha-dashboard highlights.
+require("catppuccin").setup({
+  flavour = "macchiato",
   custom_highlights = function(colors)
     return {
       AlphaHeader = { fg = colors.red },
@@ -13,3 +9,5 @@ catppuccin.setup({
     }
   end,
 })
+
+vim.cmd.colorscheme("catppuccin")
