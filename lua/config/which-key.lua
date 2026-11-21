@@ -1,71 +1,40 @@
-local status_ok, wk = pcall(require, "which-key")
-if not status_ok then
-  error("Which-Key Error")
-  return
-end
+-- Which-key: pops up after pressing a prefix (e.g. <leader>) to show every
+-- mapping that starts with it. Each mapping's `desc` is what's shown here,
+-- which is why every map helper takes a desc string.
 
--- Setup `which-key` with configurations
+local wk = require("which-key")
+
 wk.setup({
   plugins = {
-    marks = true,
-    registers = true,
-    spelling = { enabled = true, suggestions = 20 },
+    marks = true, -- Show `'` marks popup
+    registers = true, -- Show `"` registers popup
+    spelling = { enabled = true, suggestions = 20 }, -- Suggestions on z=
   },
   icons = {
     breadcrumb = "»",
-    separator = "",
-    group = " ",
+    separator = "",
+    group = " ",
   },
+  -- Rewrite how certain keys are rendered in the popup.
   replace = {
-    ["<leader>"] = "SPC",
+    key = {
+      -- `<Space>` is our leader; "SPC" reads better in the group listing.
+      { "<Space>", "SPC" },
+    },
   },
 })
 
--- Add key mappings with groups
+-- Give each leader-prefix a group name. Which-key still renders the
+-- individual mappings; this just labels the folder.
 wk.add({
-  -- Lazy
-  { "<leader>l", group = "[L]azy" },
-
-  -- Yank
-  { "<leader>y", group = "[Y]ank To System Clipboard" },
-
-  -- Buffers
   { "<leader>b", group = "[B]uffer" },
   { "<leader>bd", group = "[D]elete" },
-  { "<leader>bp", group = "[P]in" },
-  { "<leader>bs", group = "[S]how" },
-
-  -- Telescope Finder
-  { "<leader>f", group = "[F]ind" },
-  { "<leader>ft", group = "[T]odo" },
-  { "<leader>/", group = "Find Text In CWD" },
-  { "<leader><space>", group = "Find Files" },
-
-  -- Restart LSP
-  { "<leader>r", group = "[R]estart" },
-  { "<leader>rl", group = "[L]SP" },
-
-  -- Code
   { "<leader>c", group = "[C]ode" },
-  { "<leader>ca", group = "[A]ctions" },
-
-  -- Todo Comments Telescope
+  { "<leader>d", group = "[D]ebug" },
   { "<leader>f", group = "[F]ind" },
-  { "<leader>ft", group = "[T]odo" },
-
-  -- Git
   { "<leader>g", group = "[G]it" },
-  { "<leader>gb", group = "[B]ranches" },
-
-  -- Mason
-  { "<leader>m", group = "[M]ason" },
-
-  -- Undo-tree
-  { "<leader>u", group = "[U]ndo-tree" },
-
-  -- Title-case
-  { "<leader>t", group = "[T]itle-case" },
-
-  -- Quit
-  { "<leader>q", group = "[Q]uit" },
+  { "<leader>n", group = "[N]eotest / [N]otifications" },
+  { "<leader>r", group = "[R]estart" },
+  { "<leader>s", group = "[S]earch / Replace" },
+  { "<leader>x", group = "Diagnostics (Trouble)" },
 })
