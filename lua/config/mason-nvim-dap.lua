@@ -1,18 +1,19 @@
--- Mason NVIM DAP
-local status_ok_mason_nvim_dap, mason_nvim_dap = pcall(require, "mason-nvim-dap")
-if not status_ok_mason_nvim_dap then
-  error("Mason NVIM DAP Error")
-  return
-end
+-- Mason-NVIM-DAP: installs debug adapters declared in config/languages.lua.
+--
+-- `automatic_installation = false` so this plugin only installs the explicit
+-- `ensure_installed` list; new filetypes won't surprise-install a debugger.
+-- `handlers = {}` takes the default handler for every adapter, which is just
+-- a passthrough into nvim-dap.
 
--- Pass In Any New DAP To Add
-local dap = {
-  ensure_installed = {
-    -- Golang
-    "delve",
-  },
+local toolchain = require("helpers.toolchain")
+local languages = require("config.languages")
+
+local installable = toolchain.partition(languages.debuggers)
+
+require("mason-nvim-dap").setup({
+  ensure_installed = installable,
+  automatic_installation = false,
   handlers = {},
-  automatic_installation = true,
-}
+})
 
-mason_nvim_dap.setup(dap)
+toolchain.notify_skipped()

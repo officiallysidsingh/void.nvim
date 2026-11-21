@@ -1,13 +1,12 @@
+-- Debug Adapter Protocol: nvim-dap + UI + Go adapter + mason installer.
 return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
-      "williamboman/mason.nvim",
       "theHamsta/nvim-dap-virtual-text",
       "leoluz/nvim-dap-go",
-      "fredrikaverpil/neotest-golang",
     },
     config = function()
       require("config.nvim-dap")
@@ -17,7 +16,7 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
     event = "VeryLazy",
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       "mfussenegger/nvim-dap",
     },
     config = function()
