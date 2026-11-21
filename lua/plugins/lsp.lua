@@ -1,25 +1,32 @@
+-- LSP: Mason + mason-lspconfig + nvim-lspconfig default definitions.
 return {
   {
-    "williamboman/mason.nvim",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-    },
-    lazy = "VeryLazy",
+    "mason-org/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate", "MasonLog" },
     build = ":MasonUpdate",
     config = function()
       require("config.mason")
     end,
   },
   {
-    "neovim/nvim-lspconfig",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "VeryLazy",
+    dependencies = { "mason-org/mason.nvim" },
+    config = function()
+      require("config.mason-tool-installer")
+    end,
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    cmd = { "LspInstall", "LspUninstall" },
     dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig", -- default server definitions
       "hrsh7th/cmp-nvim-lsp",
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-      require("config.nvim-lspconfig")
+      require("config.lsp")
     end,
   },
 }
