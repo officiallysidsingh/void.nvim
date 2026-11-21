@@ -1,3 +1,4 @@
+-- Lualine: statusline with mode, branch, diagnostics, LSP progress and clock.
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
   error("Lualine Error")
@@ -64,6 +65,12 @@ lualine.setup({
       },
     },
     lualine_x = {
+      -- Number of plugins with pending updates (see `checker` in core/lazy.lua)
+      {
+        require("lazy.status").updates,
+        cond = require("lazy.status").has_updates,
+        color = "DiagnosticWarn",
+      },
       -- stylua: ignore
       {
         "diff",
