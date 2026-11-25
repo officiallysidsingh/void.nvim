@@ -33,3 +33,7 @@ local opts = {
 for opt, val in pairs(opts) do
   vim.o[opt] = val
 end
+
+-- Hide the `~` end-of-buffer markers in every window (regular buffers,
+-- neo-tree, alpha dashboard). The line still exists, just renders blank.
+vim.opt.fillchars:append({ eob = " " })
